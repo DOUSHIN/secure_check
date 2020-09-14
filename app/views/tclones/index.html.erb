@@ -29,6 +29,7 @@
         <tr>
           <td><%= tclone.content %></td>
           <td><%= link_to '編集',edit_tclone_path(tclone.id), data: { confirm: '編集しますか？' } %></td>
+          <td><%= link_to '削除',tclone_path(tclone.id), method: :delete , data: { confirm: '削除しますか？' } %></td>
         </tr>
       <% end %>
       </table>

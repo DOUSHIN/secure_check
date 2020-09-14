@@ -28,6 +28,12 @@ class TclonesController < ApplicationController
     redirect_to tclones_path, notice: "編集しました"
   end
 
+  def destroy
+    @tclone = Tclone.find(params[:id])
+    @tclone.destroy
+    redirect_to tclones_path, notice:"削除しました"
+  end
+
   private
   def tclone_params
     params.require(:tclone).permit(:content)

@@ -24,6 +24,7 @@
         <%= form.hidden_field :content %>
         <p>内容:<%= @tclone.content %></p>
         <%= form.submit "ツイートする" %>
+        <%= form.submit "戻る", name: 'back' %>
       <% end %>
     </div>
   </section>

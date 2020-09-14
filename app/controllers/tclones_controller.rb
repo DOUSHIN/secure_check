@@ -6,8 +6,15 @@ class TclonesController < ApplicationController
 
   def create
     @tclone = Tclone.new(tclone_params)
-    @tclone.save
-    redirect_to tclones_path, notice: "ツイートしました"
+    if params[:back]
+      render :new
+    else
+      if @tclone.save
+        redirect_to tclones_path, notice: "ツイートしました"
+      else
+        render :new
+      end
+    end
   end
 
   def index

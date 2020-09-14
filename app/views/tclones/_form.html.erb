@@ -19,23 +19,25 @@
   </header>
   <section class="about">
     <div class="about-content">
-      <h1>Tweets All</h1>
-      <p><%= notice %></p>
-      <table>
-        <tr>
-          <th>tweets</th>
-        </tr>
-      <% @tclones.each do |tclone| %>
-        <tr>
-          <td><%= tclone.content %></td>
-          <td><%= link_to '編集',edit_tclone_path(tclone.id), data: { confirm: '編集しますか？' } %></td>
-          <td><%= link_to '削除',tclone_path(tclone.id), method: :delete , data: { confirm: '削除しますか？' } %></td>
-        </tr>
+      <h1>Twitter Clone</h1>
+      <%= form_with( model: @tclone, local: true, url: choose_new_or_edit ) do |form| %>
+        <% if @tclone.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= @tclone.errors.count %>件のエラーがあります。</h2>
+            <ul>
+              <% @tclone.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="tclone_content">
+          <%= form.label :content %>
+          <%= form.text_field :content %>
+        </div>
+        <%= form.submit "ツイートする" %>
       <% end %>
-        <tr>
-          <td><%= link_to 'ツイート画面に戻る',new_tclone_path %></td>
-        </tr>
-      </table>
+      <%= link_to "Tweets All", tclones_path %>
     </div>
   </section>
   <footer>

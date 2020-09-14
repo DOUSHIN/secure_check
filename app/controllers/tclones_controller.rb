@@ -1,5 +1,7 @@
 class TclonesController < ApplicationController
 
+  before_action :set_tclone, only: [:edit, :update, :destroy]
+
   def new
     @tclone = Tclone.new
   end
@@ -27,17 +29,17 @@ class TclonesController < ApplicationController
   end
 
   def edit
-    @tclone = Tclone.find(params[:id])
   end
 
   def update
-    @tclone = Tclone.find(params[:id])
-    @tclone.update(tclone_params)
-    redirect_to tclones_path, notice: "編集しました"
+    if @tclone.update(tclone_params)
+      redirect_to tclones_path, notice: "編集しました"
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @tclone = Tclone.find(params[:id])
     @tclone.destroy
     redirect_to tclones_path, notice:"削除しました"
   end
@@ -45,6 +47,10 @@ class TclonesController < ApplicationController
   private
   def tclone_params
     params.require(:tclone).permit(:content)
+  end
+
+  def set_tclone
+    @tclone = Tclone.find(params[:id])
   end
 
 end

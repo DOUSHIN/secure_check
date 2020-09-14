@@ -19,18 +19,12 @@
   </header>
   <section class="about">
     <div class="about-content">
-      <h1>Tweets All</h1>
-      <p><%= notice %></p>
-      <table>
-        <tr>
-          <th>tweets</th>
-        </tr>
-      <% @tclones.each do |tclone| %>
-        <tr>
-          <td><%= tclone.content %></td>
-        </tr>
+      <h1>Confirm & Tweet</h1>
+      <%= form_with( model: @tclone, local: true ) do |form| %>
+        <%= form.hidden_field :content %>
+        <p>内容:<%= @tclone.content %></p>
+        <%= form.submit "ツイートする" %>
       <% end %>
-      </table>
     </div>
   </section>
   <footer>

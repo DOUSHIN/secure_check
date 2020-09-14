@@ -20,7 +20,7 @@
   <section class="about">
     <div class="about-content">
       <h1>Twitter Clone</h1>
-      <%= form_with( model: @tclone, local: true ) do |form| %>
+      <%= form_with( model: @tclone, local: true, url: choose_new_or_edit ) do |form| %>
         <%= form.label :content %>
         <%= form.text_field :content %>
       <%= form.submit %>

@@ -19,19 +19,13 @@
   </header>
   <section class="about">
     <div class="about-content">
-      <h1>Tweets All</h1>
-      <p><%= notice %></p>
-      <table>
-        <tr>
-          <th>tweets</th>
-        </tr>
-      <% @tclones.each do |tclone| %>
-        <tr>
-          <td><%= tclone.content %></td>
-          <td><%= link_to '編集',edit_tclone_path(tclone.id), data: { confirm: '編集しますか？' } %></td>
-        </tr>
+      <h1>Twitter Clone</h1>
+      <%= form_with( model: @tclone, local: true, url: choose_new_or_edit ) do |form| %>
+        <%= form.label :content %>
+        <%= form.text_field :content %>
+      <%= form.submit %>
       <% end %>
-      </table>
+      <%= link_to "Tweets All", tclones_path %>
     </div>
   </section>
   <footer>

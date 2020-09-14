@@ -18,13 +18,19 @@ class TclonesController < ApplicationController
     @tclone = Tclone.new(tclone_params)
   end
 
+  def edit
+    @tclone = Tclone.find(params[:id])
+  end
+
+  def update
+    @tclone = Tclone.find(params[:id])
+    @tclone.update(tclone_params)
+    redirect_to tclones_path, notice: "編集しました"
+  end
+
   private
   def tclone_params
     params.require(:tclone).permit(:content)
-  end
-
-  def set_tclone
-    @tclone = Tclone.find(params[:id])
   end
 
 end

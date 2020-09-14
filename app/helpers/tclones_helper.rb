@@ -3,7 +3,7 @@ module TclonesHelper
     if action_name == 'new'
       confirm_tclones_path
     elsif action_name == 'edit'
-      edit_tclone_path
+      tclone_path
     end
   end
 end

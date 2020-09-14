@@ -23,6 +23,7 @@ class TclonesController < ApplicationController
 
   def confirm
     @tclone = Tclone.new(tclone_params)
+    render :new if @tclone.invalid?
   end
 
   def edit

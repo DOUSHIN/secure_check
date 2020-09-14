@@ -21,9 +21,21 @@
     <div class="about-content">
       <h1>Twitter Clone</h1>
       <%= form_with( model: @tclone, local: true, url: choose_new_or_edit ) do |form| %>
-        <%= form.label :content %>
-        <%= form.text_field :content %>
-      <%= form.submit %>
+        <% if @tclone.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= @tclone.errors.count %>件のエラーがあります。</h2>
+            <ul>
+              <% @tclone.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="tclone_content">
+          <%= form.label :content %>
+          <%= form.text_field :content %>
+        </div>
+        <%= form.submit "ツイートする" %>
       <% end %>
       <%= link_to "Tweets All", tclones_path %>
     </div>
